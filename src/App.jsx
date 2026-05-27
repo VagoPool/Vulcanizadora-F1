@@ -115,16 +115,30 @@ function App() {
         </div>
       </section>
 
-      {/* CONTACTO */}
-      <section className="section" id="contacto">
-        <h2 className="section-title">Contacto</h2>
-        <p className="section-sub">Estamos disponibles las 24 horas, los 7 días de la semana</p>
-        <div className="contacto-btns">
-          <a href="https://wa.me/524773145975" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
-            💬 Escribir por WhatsApp
-          </a>
-        </div>
-      </section>
+{/* CONTACTO */}
+<section className="section" id="contacto">
+  <h2 className="section-title">Contacto</h2>
+  <p className="section-sub">Estamos disponibles las 24 horas, los 7 días de la semana</p>
+  <div className="contacto-wrap">
+    <button className="btn-contacto-principal" onClick={() => {
+      const menu = document.getElementById('contacto-menu')
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'
+    }}>
+      📲 Contáctanos
+    </button>
+    <div id="contacto-menu" className="contacto-menu">
+      <a href="https://wa.me/524775746590" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+        💬 WhatsApp · 477 574 65 90
+      </a>
+      <a href="https://wa.me/524776494870" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+        💬 WhatsApp · 477 649 48 70
+      </a>
+      <a href="mailto:vulcanizadoraf2@hotmail.com" className="btn-correo">
+        📧 vulcanizadoraf2@hotmail.com
+      </a>
+    </div>
+  </div>
+</section>
 
       <footer className="footer">© 2025 Vulcanizadora Fórmula 1 · Servicio 24/7</footer>
     </div>
