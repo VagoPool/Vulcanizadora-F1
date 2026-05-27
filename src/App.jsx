@@ -10,7 +10,7 @@ function Particles() {
     const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
     resize()
     window.addEventListener('resize', resize)
-    const TOTAL = 60
+    const TOTAL = 50
     const dots = Array.from({ length: TOTAL }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -26,13 +26,13 @@ function Particles() {
         if (a.x < 0 || a.x > canvas.width) a.vx *= -1
         if (a.y < 0 || a.y > canvas.height) a.vy *= -1
         ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(220,30,30,0.6)'; ctx.fill()
+        ctx.fillStyle = 'rgba(200,0,0,0.25)'; ctx.fill()
         for (let j = i + 1; j < TOTAL; j++) {
           const b = dots[j]
           const dist = Math.hypot(a.x - b.x, a.y - b.y)
           if (dist < 120) {
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(220,30,30,${0.12 * (1 - dist / 120)})`
+            ctx.strokeStyle = `rgba(200,0,0,${0.08 * (1 - dist / 120)})`
             ctx.lineWidth = 0.5; ctx.stroke()
           }
         }
@@ -45,22 +45,29 @@ function Particles() {
   return <canvas ref={canvasRef} style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:0, pointerEvents:'none' }} />
 }
 
-const serviciosBase = [
-  { icon: '🔧', texto: 'Reparación y cambio de llantas', foto: '/foto1.jpg' },
-  { icon: '💨', texto: 'Cambio de bolsas de aire (suspensión y retráctil)', foto: '/foto2.jpg' },
-  { icon: '⚙️', texto: 'Reparación de válvula niveladora y repartidora', foto: '/foto3.jpg' },
-  { icon: '🔩', texto: 'Cambio de roto chamber y matracas', foto: '/foto4.jpg' },
-  { icon: '🛞', texto: 'Cambio de balatas, masas y baleros', foto: '/foto5.jpg' },
-  { icon: '⚡', texto: 'Pase de corriente', foto: '/foto6.jpg' },
-  { icon: '🎯', texto: 'Calibración completa de neumáticos', foto: '/foto7.jpg' },
-  { icon: '🚦', texto: 'Semáforo de unidades', foto: '/foto1.jpg' },
-  { icon: '🛢️', texto: 'Sellado de fugas de aceite en tapas de masa', foto: '/foto2.jpg' },
-  { icon: '📦', texto: 'Reparación de filtración en caja seca', foto: '/foto3.jpg' },
-  { icon: '💡', texto: 'Corrección de cortos y cambio de plafones', foto: '/foto4.jpg' },
-  { icon: '🚛', texto: 'Cambio de loderas y porta loderas', foto: '/foto5.jpg' },
-  { icon: '🔨', texto: 'Soldadura de cajas, remolques y porta contenedores', foto: '/foto6.jpg' },
-  { icon: '🛡️', texto: 'Engrasado completo', foto: '/foto7.jpg' },
-  { icon: '✅', texto: 'Servicios preventivos', foto: '/foto1.jpg' },
+const servicios = [
+  { icon: '🔧', texto: 'Reparación y cambio de llantas' },
+  { icon: '💨', texto: 'Cambio de bolsas de aire (suspensión y retráctil)' },
+  { icon: '⚙️', texto: 'Reparación de válvula niveladora y repartidora' },
+  { icon: '🔩', texto: 'Cambio de roto chamber y matracas' },
+  { icon: '🛞', texto: 'Cambio de balatas, masas y baleros' },
+  { icon: '⚡', texto: 'Pase de corriente' },
+  { icon: '🎯', texto: 'Calibración completa de neumáticos' },
+  { icon: '🚦', texto: 'Semáforo de unidades' },
+  { icon: '🛢️', texto: 'Sellado de fugas de aceite en tapas de masa' },
+  { icon: '📦', texto: 'Reparación de filtración en caja seca' },
+  { icon: '💡', texto: 'Corrección de cortos y cambio de plafones' },
+  { icon: '🚛', texto: 'Cambio de loderas y fabricación de porta loderas' },
+  { icon: '🔨', texto: 'Soldadura de cajas, remolques y porta contenedores' },
+  { icon: '🛡️', texto: 'Engrasado completo' },
+  { icon: '✅', texto: 'Servicios preventivos' },
+]
+
+const galeria = [
+  { titulo: '🔧 Reparaciones', fotos: ['/repar1.jpg', '/repar2.jpg', '/repar3.jpg'] },
+  { titulo: '💨 Bolsas de Aire', fotos: ['/bolsas1.jpg', '/bolsas2.jpg', '/bolsas3.jpg'] },
+  { titulo: '⚙️ Válvulas Niveladoras y Repartidoras', fotos: ['/valv1.jpg'] },
+  { titulo: '🔩 Roto Chamber', fotos: ['/roto1.jpg', '/roto2.jpg'] },
 ]
 
 const estados = ['Tijuana','Querétaro','Guadalajara','Guanajuato','León','San Luis Potosí','Monterrey','Ciudad de México','Manzanillo','Guatemala']
@@ -84,28 +91,38 @@ function App() {
         </div>
       </section>
 
-{/* SERVICIOS */}
-<section className="section" id="servicios">
-  <h2 className="section-title">Servicios</h2>
-  <p className="section-sub">Atención en base y en carretera donde nos necesites</p>
-  <div className="servicios-grid">
-    {serviciosBase.map((s, i) => (
-      <div key={i} className="servicio-card">
-        <div className="servicio-foto">
-          <img src={s.foto} alt={s.texto} />
-          <div className="servicio-overlay" />
+      {/* SERVICIOS */}
+      <section className="section" id="servicios">
+        <h2 className="section-title">Servicios</h2>
+        <p className="section-sub">Atención en base y en carretera donde nos necesites</p>
+        <div className="servicios-grid">
+          {servicios.map((s, i) => (
+            <div key={i} className="servicio-card">
+              <span className="servicio-icon">{s.icon}</span>
+              <span className="servicio-texto">{s.texto}</span>
+            </div>
+          ))}
         </div>
-        <div className="servicio-info">
-          <span className="servicio-icon">{s.icon}</span>
-          <span className="servicio-texto">{s.texto}</span>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
+
+      {/* GALERÍA */}
+      <section className="section section-dark" id="galeria">
+        <h2 className="section-title">Galería de Servicios</h2>
+        <p className="section-sub">Conoce nuestro trabajo en campo</p>
+        {galeria.map((bloque, i) => (
+          <div key={i} className="galeria-bloque">
+            <div className="galeria-bloque-titulo">{bloque.titulo}</div>
+            <div className="galeria-fotos">
+              {bloque.fotos.map((foto, j) => (
+                <img key={j} src={foto} alt={bloque.titulo} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
 
       {/* COBERTURA */}
-      <section className="section section-dark" id="cobertura">
+      <section className="section" id="cobertura">
         <h2 className="section-title">Cobertura</h2>
         <p className="section-sub">Presencia en 10 estados de la república</p>
         <div className="estados-grid">
@@ -115,30 +132,30 @@ function App() {
         </div>
       </section>
 
-{/* CONTACTO */}
-<section className="section" id="contacto">
-  <h2 className="section-title">Contacto</h2>
-  <p className="section-sub">Estamos disponibles las 24 horas, los 7 días de la semana</p>
-  <div className="contacto-wrap">
-    <button className="btn-contacto-principal" onClick={() => {
-      const menu = document.getElementById('contacto-menu')
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'
-    }}>
-      📲 Contáctanos
-    </button>
-    <div id="contacto-menu" className="contacto-menu">
-      <a href="https://wa.me/524775746590" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
-        💬 WhatsApp · 477 574 65 90
-      </a>
-      <a href="https://wa.me/524776494870" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
-        💬 WhatsApp · 477 649 48 70
-      </a>
-      <a href="mailto:vulcanizadoraf2@hotmail.com" className="btn-correo">
-        📧 vulcanizadoraf2@hotmail.com
-      </a>
-    </div>
-  </div>
-</section>
+      {/* CONTACTO */}
+      <section className="section section-dark" id="contacto">
+        <h2 className="section-title">Contacto</h2>
+        <p className="section-sub">Estamos disponibles las 24 horas, los 7 días de la semana</p>
+        <div className="contacto-wrap">
+          <button className="btn-contacto-principal" onClick={() => {
+            const menu = document.getElementById('contacto-menu')
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'
+          }}>
+            📲 Contáctanos
+          </button>
+          <div id="contacto-menu" className="contacto-menu">
+            <a href="https://wa.me/524775746590" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+              💬 WhatsApp · 477 574 65 90
+            </a>
+            <a href="https://wa.me/524776494870" target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+              💬 WhatsApp · 477 649 48 70
+            </a>
+            <a href="mailto:vulcanizadoraf2@hotmail.com" className="btn-correo">
+              📧 vulcanizadoraf2@hotmail.com
+            </a>
+          </div>
+        </div>
+      </section>
 
       <footer className="footer">© 2025 Vulcanizadora Fórmula 1 · Servicio 24/7</footer>
     </div>
