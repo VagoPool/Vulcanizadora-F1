@@ -121,6 +121,25 @@ function App() {
         ))}
       </section>
 
+{/* CARRUSEL */}
+<section className="section" id="carrusel">
+  <h2 className="section-title">Nuestro Trabajo</h2>
+  <p className="section-sub">"Tu camino no se detiene. Nosotros tampoco. Conoce nuestro trabajo."</p>
+  <div className="carrusel-wrap">
+    <button className="carrusel-btn izq" onClick={() => {
+      document.getElementById('carrusel-track').scrollBy({ left: -320, behavior: 'smooth' })
+    }}>‹</button>
+    <div className="carrusel-track" id="carrusel-track">
+      {Array.from({ length: 62 }, (_, i) => (
+        <img key={i} src={`/g${i + 1}.jpg`} alt={`trabajo ${i + 1}`} className="carrusel-foto" />
+      ))}
+    </div>
+    <button className="carrusel-btn der" onClick={() => {
+      document.getElementById('carrusel-track').scrollBy({ left: 320, behavior: 'smooth' })
+    }}>›</button>
+  </div>
+</section>
+
       {/* COBERTURA */}
       <section className="section" id="cobertura">
         <h2 className="section-title">Cobertura</h2>
