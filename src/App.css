@@ -192,3 +192,80 @@ html, body, #root {
   position: relative;
   z-index: 2;
 }
+.servicio-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(220,30,30,0.2);
+  background: #0f0f0f;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.servicio-card:hover {
+  border-color: rgba(220,30,30,0.6);
+  box-shadow: 0 0 25px rgba(220,30,30,0.2);
+  transform: translateY(-3px);
+}
+
+.servicio-foto {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+}
+
+.servicio-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  opacity: 0.6;
+}
+
+.servicio-card:hover .servicio-foto img {
+  transform: scale(1.08);
+  opacity: 0.8;
+}
+
+.servicio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, #0f0f0f 100%);
+}
+
+.servicio-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+}
+
+.servicio-icon { font-size: 20px; }
+
+.servicio-texto {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+
+.btn-correo {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,165,0,0.06);
+  border: 1px solid rgba(255,165,0,0.35);
+  box-shadow: 0 0 15px rgba(255,165,0,0.15);
+  transition: all 0.25s;
+  letter-spacing: 0.5px;
+}
+
+.btn-correo:hover {
+  box-shadow: 0 0 35px rgba(255,165,0,0.35);
+  transform: translateY(-2px);
+}

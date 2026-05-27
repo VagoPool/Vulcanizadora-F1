@@ -46,18 +46,21 @@ function Particles() {
 }
 
 const serviciosBase = [
-  '🔧 Reparación y cambio de llantas',
-  '💨 Cambio de bolsas de aire (suspensión y retráctil)',
-  '⚙️ Reparación de válvula niveladora y repartidora',
-  '🔩 Cambio de roto chamber y matracas',
-  '🛞 Cambio de balatas, masas y baleros',
-  '⚡ Pase de corriente',
-  '🛢️ Sellado de fugas de aceite en tapas de masa',
-  '📦 Reparación de filtración en caja seca',
-  '💡 Corrección de cortos y cambio de plafones',
-  '🚛 Cambio de loderas y fabricación de porta loderas',
-  '🔨 Reparación y soldadura de cajas, remolques y porta contenedores',
-  '🛡️ Servicios preventivos',
+  { icon: '🔧', texto: 'Reparación y cambio de llantas', foto: '/foto1.jpg' },
+  { icon: '💨', texto: 'Cambio de bolsas de aire (suspensión y retráctil)', foto: '/foto2.jpg' },
+  { icon: '⚙️', texto: 'Reparación de válvula niveladora y repartidora', foto: '/foto3.jpg' },
+  { icon: '🔩', texto: 'Cambio de roto chamber y matracas', foto: '/foto4.jpg' },
+  { icon: '🛞', texto: 'Cambio de balatas, masas y baleros', foto: '/foto5.jpg' },
+  { icon: '⚡', texto: 'Pase de corriente', foto: '/foto6.jpg' },
+  { icon: '🎯', texto: 'Calibración completa de neumáticos', foto: '/foto7.jpg' },
+  { icon: '🚦', texto: 'Semáforo de unidades', foto: '/foto1.jpg' },
+  { icon: '🛢️', texto: 'Sellado de fugas de aceite en tapas de masa', foto: '/foto2.jpg' },
+  { icon: '📦', texto: 'Reparación de filtración en caja seca', foto: '/foto3.jpg' },
+  { icon: '💡', texto: 'Corrección de cortos y cambio de plafones', foto: '/foto4.jpg' },
+  { icon: '🚛', texto: 'Cambio de loderas y porta loderas', foto: '/foto5.jpg' },
+  { icon: '🔨', texto: 'Soldadura de cajas, remolques y porta contenedores', foto: '/foto6.jpg' },
+  { icon: '🛡️', texto: 'Engrasado completo', foto: '/foto7.jpg' },
+  { icon: '✅', texto: 'Servicios preventivos', foto: '/foto1.jpg' },
 ]
 
 const estados = ['Tijuana','Querétaro','Guadalajara','Guanajuato','León','San Luis Potosí','Monterrey','Ciudad de México','Manzanillo','Guatemala']
@@ -81,16 +84,25 @@ function App() {
         </div>
       </section>
 
-      {/* SERVICIOS */}
-      <section className="section" id="servicios">
-        <h2 className="section-title">Servicios</h2>
-        <p className="section-sub">Atención en base y en carretera donde nos necesites</p>
-        <div className="servicios-grid">
-          {serviciosBase.map((s, i) => (
-            <div key={i} className="servicio-card">{s}</div>
-          ))}
+{/* SERVICIOS */}
+<section className="section" id="servicios">
+  <h2 className="section-title">Servicios</h2>
+  <p className="section-sub">Atención en base y en carretera donde nos necesites</p>
+  <div className="servicios-grid">
+    {serviciosBase.map((s, i) => (
+      <div key={i} className="servicio-card">
+        <div className="servicio-foto">
+          <img src={s.foto} alt={s.texto} />
+          <div className="servicio-overlay" />
         </div>
-      </section>
+        <div className="servicio-info">
+          <span className="servicio-icon">{s.icon}</span>
+          <span className="servicio-texto">{s.texto}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* COBERTURA */}
       <section className="section section-dark" id="cobertura">
